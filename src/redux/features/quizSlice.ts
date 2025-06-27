@@ -5,6 +5,7 @@ const initialState = {
   questions: quizData,
   currentQuestionIndex: 0,
   userAnswer: Array(quizData.length).fill(null),
+  quizComplete: false,
 };
 export const quizSlice = createSlice({
   name: "quiz",
@@ -24,8 +25,12 @@ export const quizSlice = createSlice({
         state.currentQuestionIndex -= 1;
       }
     },
+    completeQuiz: (state) => {
+      state.quizComplete = true;
+    },
   },
 });
 
-export const { setAnswer, nextQuestion ,previousQuestion} = quizSlice.actions;
+export const { setAnswer, nextQuestion, previousQuestion, completeQuiz } =
+  quizSlice.actions;
 export default quizSlice.reducer;
