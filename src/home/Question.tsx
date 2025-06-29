@@ -19,32 +19,35 @@ export default function Question() {
       })
     );
   };
-
   return (
     <div className="flex justify-center">
-      <Card className="w-[450px] ">
-        <CardHeader>
-          <CardTitle>{currentQuestion.question}</CardTitle>
-          {/* <CardDescription>{}</CardDescription> */}
-        </CardHeader>
+      {questions.length ? (
+        <Card className="w-[450px] ">
+          <CardHeader>
+            <CardTitle>{currentQuestion.question}</CardTitle>
+            {/* <CardDescription>{}</CardDescription> */}
+          </CardHeader>
 
-        <CardContent>
-          <div>
-            {currentQuestion.options.map((option, index) => (
-              <Button
-                variant={option === currentAnswer ? "default" : "outline"}
-                onClick={() => handleAnswerChange(option)}
-                className="w-full mt-3"
-                size={"lg"}
-                key={index}
-              >
-                {option}
-              </Button>
-            ))}
-          </div>
-          <QuizControls></QuizControls>
-        </CardContent>
-      </Card>
+          <CardContent>
+            <div>
+              {currentQuestion?.options.map((option, index) => (
+                <Button
+                  variant={option === currentAnswer ? "default" : "outline"}
+                  onClick={() => handleAnswerChange(option)}
+                  className="w-full mt-3"
+                  size={"lg"}
+                  key={index}
+                >
+                  {option}
+                </Button>
+              ))}
+            </div>
+            <QuizControls></QuizControls>
+          </CardContent>
+        </Card>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
